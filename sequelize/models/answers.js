@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.answer_photos, { foriegnKey: 'answer_id' })
+      this.belongsTo(models.questions, { foriegnKey:'question_id' })
     }
   }
   answers.init({

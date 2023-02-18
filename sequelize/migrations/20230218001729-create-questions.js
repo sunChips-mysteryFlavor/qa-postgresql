@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       question_body: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       question_date: {
         type: Sequelize.DATE

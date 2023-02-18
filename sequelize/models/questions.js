@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.answers, { foriegnKey:'question_id' })
     }
   }
   questions.init({
@@ -20,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     product_id: DataTypes.INTEGER,
-    question_body: DataTypes.INTEGER,
+    question_body: DataTypes.STRING,
     question_date: DataTypes.DATE,
     asker_name: DataTypes.STRING,
     question_helpfulness: DataTypes.INTEGER,

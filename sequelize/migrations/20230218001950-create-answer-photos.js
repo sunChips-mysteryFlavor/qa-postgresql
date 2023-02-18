@@ -10,7 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       answer_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'answers',
+          key: 'answer_id'
+        }
       },
       url: {
         type: Sequelize.STRING
