@@ -4,7 +4,6 @@ module.exports = {
   get: (req, res) => {
     questions.queryQuestions(req.query)
       .then((result) => {
-        console.log(result)
         res.status(200).send(result);
       }).catch((error) => {
         res.status(404).send(error);

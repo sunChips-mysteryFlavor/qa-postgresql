@@ -14,13 +14,26 @@ module.exports = {
       offset: page*count
     });
   },
-  insertQuestions: (question) => {
-    //return axios.post('/qa/questions', question)
+  insertQuestions: (data) => {
+    return questions.create({
+      product_id:data.product_id,
+      question_body:data.body,
+      asker_name:data.name,
+      asker_email:data.email
+    })
   },
   incrementQuestionHelfulness: (question_id) => {
-    //return axios.put(`/qa/questions/${question_id}/helpful`)
+    return questions.increment('question_helpfulness',{
+      by: 1,
+      where: {question_id:question_id}
+    })
+
   },
   toggleReported: (question_id) => {
-    //return axios.put(`/qa/questions/${question_id}/report`)
+    return questions.update({reported: true},{
+      where:{question_id:question_id}
+    })
   },
 }
+
+

@@ -20,10 +20,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     product_id: DataTypes.INTEGER,
     question_body: DataTypes.STRING,
-    question_date: DataTypes.DATE,
+    question_date: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
     asker_name: DataTypes.STRING,
-    question_helpfulness: DataTypes.INTEGER,
-    reported: DataTypes.BOOLEAN,
+    question_helpfulness: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    reported: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   }, {
     sequelize,
     modelName: 'questions',

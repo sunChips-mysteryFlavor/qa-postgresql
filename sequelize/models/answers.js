@@ -21,11 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    question_id: DataTypes.NUMBER,
+    question_id: DataTypes.INTEGER,
     body: DataTypes.STRING,
-    date: DataTypes.DATE,
+    date:{
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
     answerer_name: DataTypes.STRING,
-    helpfulness: DataTypes.NUMBER
+    helpfulness: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    }
   }, {
     sequelize,
     modelName: 'answers',
