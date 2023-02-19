@@ -1,7 +1,4 @@
 const {questions} = require('../../sequelize/models');
-const sequelize = require('sequelize');
-
-console.log('db model questions:', questions)
 
 module.exports = {
   queryQuestions: (query) => {
