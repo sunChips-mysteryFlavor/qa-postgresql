@@ -1,4 +1,4 @@
-const {answers} = require('../../sequelize/models');
+const {answers,answer_photos} = require('../../sequelize/models');
 
 module.exports = {
   queryAnswers: (query) => {

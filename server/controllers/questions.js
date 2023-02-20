@@ -4,6 +4,16 @@ module.exports = {
   get: (req, res) => {
     questions.queryQuestions(req.query)
       .then((result) => {
+        console.log(result)
+        // result.forEach(question => {
+        //   console.log(question);
+        //   let newAnswersObj = {};
+        //   question.forEach(answer => {
+        //     newAnswersObj[answer].id = answer
+        //   });
+        //   console.log('newAnswer', newAnswersObj)
+        //   question.answers = newAnswersObj
+        // })
         res.status(200).send(result);
       }).catch((error) => {
         res.status(404).send(error);

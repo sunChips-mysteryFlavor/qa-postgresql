@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.answers, { foriegnKey: 'answer_id' })
+      this.belongsTo(models.answers, { foreignKey: 'answer_id'})
     }
   }
   answer_photos.init({
@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'answer_photos',
+    timestamps:false
   });
   return answer_photos;
 };
