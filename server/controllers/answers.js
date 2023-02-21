@@ -2,7 +2,7 @@ const {answers} = require('../models');
 
 module.exports = {
   get: (req, res) => {
-    answers.queryAnswers(req.query)
+    answers.queryAnswers(req.params.question_id,req.query)
       .then((result) => {
         res.status(200).send(result);
       }).catch((error) => {
@@ -11,7 +11,7 @@ module.exports = {
   },
 
   post: (req, res) => {
-    answers.insertAnswers(req.body)
+    answers.insertAnswers(req.params.question_id,req.body)
       .then(() => {
         res.status(201).send();
       }).catch((error) => {
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   put: (req, res) => {
-    answers.incrementAnswerHelfulness(req.params.answer_id)
+    answers.incrementAnswerHelfulness(req.params.question_id)
       .then(() => {
         res.status(204).send();
       }).catch((error) => {

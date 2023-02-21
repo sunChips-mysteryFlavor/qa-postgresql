@@ -1,7 +1,7 @@
 const {answers,answer_photos} = require('../../sequelize/models');
 
 module.exports = {
-  queryAnswers: (params, query) => {
+  queryAnswers: (question_id, query) => {
     const count = query.count ? query.count : 30;
     const page = (query.page ? query.page : 1) - 1;
 
@@ -23,12 +23,12 @@ module.exports = {
           ['a_photo_id', 'id'], 
           'url'
         ]
-      }]
+      }]  
     });
   },
-  insertAnswers: (data) => {
+  insertAnswers: (question_id,data) => {
     return answers.create({
-      product_id:data.product_id,
+      product_id:data.product_id, 
       question_body:data.body,
       asker_name:data.name,
       asker_email:data.email
@@ -41,7 +41,7 @@ module.exports = {
     })
 
   },
-  toggleReported: (question_id) => {
+  toggleReported: (answer_id) => {
     return answers.update({reported: true},{
       where:{question_id:question_id}
     })
