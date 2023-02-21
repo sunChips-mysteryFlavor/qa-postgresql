@@ -1,14 +1,29 @@
 const {answers,answer_photos} = require('../../sequelize/models');
 
 module.exports = {
-  queryAnswers: (query) => {
+  queryAnswers: (params, query) => {
     const count = query.count ? query.count : 30;
     const page = (query.page ? query.page : 1) - 1;
 
     return answers.findAll({
-      where: { product_id: query.product_id },
+      where: { product_id: params.product_id },
       limit: count,
-      offset: page*count
+      offset: page*count,
+      attributes: [
+        'answer_id  ',
+        'body',
+        'date',
+        'answerer_name',
+        'helpfulness',
+      ],
+      include:[{
+        model:answer_photos,
+        as: 'photos',
+        attributes:[
+          ['a_photo_id', 'id'], 
+          'url'
+        ]
+      }]
     });
   },
   insertAnswers: (data) => {
