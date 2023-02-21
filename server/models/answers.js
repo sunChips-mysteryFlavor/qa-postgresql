@@ -2,15 +2,14 @@ const {answers,answer_photos} = require('../../sequelize/models');
 
 module.exports = {
   queryAnswers: (question_id, query) => {
-    const count = query.count ? query.count : 30;
+    const count = query.count === 5 ? 5 : query.count;
     const page = (query.page ? query.page : 1) - 1;
-
     return answers.findAll({
-      where: { product_id: params.product_id },
+      where: { question_id: question_id, reported: false },
       limit: count,
       offset: page*count,
       attributes: [
-        'answer_id  ',
+        'answer_id',
         'body',
         'date',
         'answerer_name',
@@ -20,30 +19,33 @@ module.exports = {
         model:answer_photos,
         as: 'photos',
         attributes:[
-          ['a_photo_id', 'id'], 
+          ['a_photo_id', 'id'],
           'url'
         ]
-      }]  
+      }],
+      order:[
+        [{ model: answer_photos, as: 'photos'},'a_photo_id','ASC'],
+      ]
     });
   },
   insertAnswers: (question_id,data) => {
     return answers.create({
-      product_id:data.product_id, 
+      product_id:data.product_id,
       question_body:data.body,
       asker_name:data.name,
       asker_email:data.email
     })
   },
-  incrementAnswerHelfulness: (question_id) => {
-    return answers.increment('question_helpfulness',{
+  incrementAnswerHelfulness: (answer_id) => {
+    return answers.increment('helpfulness',{
       by: 1,
-      where: {question_id:question_id}
+      where: {answer_id:answer_id}
     })
 
   },
   toggleReported: (answer_id) => {
     return answers.update({reported: true},{
-      where:{question_id:question_id}
+      where:{answer_id:answer_id}
     })
   },
 }

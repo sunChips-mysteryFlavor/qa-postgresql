@@ -6,7 +6,7 @@ module.exports = {
     const page = (query.page ? query.page : 1) - 1;
 
     return questions.findAll({
-      where: { product_id: query.product_id },
+      where: { product_id: query.product_id, reported: false },
       limit: count,
       offset: page*count,
       attributes: [

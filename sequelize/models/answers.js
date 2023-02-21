@@ -31,7 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     helpfulness: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    }
+    },
+    answerer_email: DataTypes.STRING,
+    reported: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'answers',
