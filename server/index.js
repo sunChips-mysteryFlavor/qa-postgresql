@@ -2,11 +2,17 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
+const redis = require('redis');
 const dotenv = require('dotenv').config( {path: '.env'} );
 const ghAuth = require('./middleware/ghAuth.js');
 const decryptKey = require('./middleware/accessTokenAuthDecrypt.js');
-
 const qaRouter = require('./routes.js');
+
+const redisClient = redis.createClient(6372);
+redisClient.on('connect', function() {
+  console.log('Redis: Connected!');
+  exports.redis = redisClient
+});
 
 const app = express();
 
