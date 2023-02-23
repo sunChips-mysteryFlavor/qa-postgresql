@@ -1,4 +1,6 @@
 const {questions} = require('../models');
+// const {redisClient} = require('../index.js')
+
 
 module.exports = {
   get: (req, res) => {

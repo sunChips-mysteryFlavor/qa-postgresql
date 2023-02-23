@@ -8,6 +8,7 @@ module.exports = {
       count: req.query.count === 5 ? '5' : String(req.query.count),
       results: []
     }
+
     answers.queryAnswers(req.params.question_id,req.query)
       .then((result) => {
         queryResponse.results = JSON.parse(JSON.stringify(result));
